@@ -28,11 +28,11 @@ def main():
     print("Coordinates home location:")
     print(coords)
 
-    # Takeoff drone
+    # Takeoff
     drone.handle_takeoff(5)
     sleep(10)
 
-    # Disarming drone by landing
+    # Land
     drone.handle_landing()
 
     print("Done!")
