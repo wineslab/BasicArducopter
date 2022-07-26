@@ -10,10 +10,14 @@ from argparse import ArgumentParser
 from time import sleep
 from BasicArdu.BasicArdu import BasicArdu, Frames
 
+# Parameters
+DRONE_HEIGHT = -5       # meters
+STEP = 2                # offset of each step (in meters)
+NUM_STEPS = 5           # number of steps to perform
 
 def main():
     """
-    Simple arming-disarming test with the BasicArdu wrapper
+    Nicholas experiment with a user-defined offset with the BasicArdu wrapper
     """
 
     parser = ArgumentParser()
@@ -32,33 +36,17 @@ def main():
     drone.handle_takeoff(5)
     sleep(5)
 
-    # Go to 1st waypoint - 2.5m (2.5m north, 0 meters east, 5 meters up, facing North)
-    print("Going to 1st waypoint...")
-    drone.handle_waypoint(Frames.NED, 2.5, 0, -5, 0)
-    print("Reached 1st waypoint.")
-    sleep(10)
+    # Going to each waypoint in a straight line towards North
+    for i in range(NUM_STEPS):
+        # Go to i-th waypoint - i*step m (i*step m north, 0 meters east, drone_height meters up, facing North)
+        print("Going to waypoint " + str(i+1) + " ...")
+        drone.handle_waypoint(Frames.NED, STEP*(i+1), 0, DRONE_HEIGHT, 0)
+        print("Reached waypoint " + str(i+1) + ".")
+        sleep(10)
 
-    # Go to 2nd waypoint - 5m (5m north, 0 meters east, 5 meters up, facing North)
-    print("Going to 2nd waypoint...")
-    drone.handle_waypoint(Frames.NED, 5, 0, -5, 0)
-    print("Reached 2nd waypoint.")
-    sleep(10)
-
-    # Go to 3rd waypoint - 7.5m (7.5m north, 0 meters east, 5 meters up, facing North)
-    print("Going to 3rd waypoint...")
-    drone.handle_waypoint(Frames.NED, 7.5, 0, -5, 0)
-    print("Reached 3rd waypoint.")
-    sleep(10)
-
-    # Go to 4th waypoint - 10m (10m north, 0 meters east, 5 meters up, facing North)
-    print("Going to 4th waypoint...")
-    drone.handle_waypoint(Frames.NED, 10, 0, -5, 0)
-    print("Reached 4th waypoint.")
-    sleep(10)
-
-    # Return to Home (0m north, 0 meters east, 5 meters up, facing North)
+    # Return to Home (0m north, 0 meters east, drone_height meters up, facing North)
     print("Returning home...")
-    drone.handle_waypoint(Frames.NED, 0, 0, -5, 0)
+    drone.handle_waypoint(Frames.NED, 0, 0, DRONE_HEIGHT, 0)
     print("Reached home.")
     sleep(5)
 
