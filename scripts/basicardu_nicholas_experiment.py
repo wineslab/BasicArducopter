@@ -12,8 +12,8 @@ from BasicArdu.BasicArdu import BasicArdu, Frames
 
 # Parameters
 DRONE_HEIGHT = -5       # meters
-STEP = 2                # offset of each step (in meters)
-NUM_STEPS = 5           # number of steps to perform
+STEP = 3                # offset of each step (in meters)
+NUM_STEPS = 3           # number of steps to perform
 
 def main():
     """
@@ -21,7 +21,8 @@ def main():
     """
 
     parser = ArgumentParser()
-    parser.add_argument('--connection_string', type=str, default='tcp:127.0.0.1:5762', help='Ardupilot connection string')
+    # parser.add_argument('--connection_string', type=str, default='tcp:127.0.0.1:5762', help='Ardupilot connection string')
+    parser.add_argument('--connection_string', type=str, default='tcp:192.168.10.110:5760', help='Ardupilot connection string')
     options = parser.parse_args()
 
     # Simple use example
@@ -42,7 +43,7 @@ def main():
         print("Going to waypoint " + str(i+1) + " ...")
         drone.handle_waypoint(Frames.NED, STEP*(i+1), 0, DRONE_HEIGHT, 0)
         print("Reached waypoint " + str(i+1) + ".")
-        sleep(10)
+        sleep(5)
 
     # Return to Home (0m north, 0 meters east, drone_height meters up, facing North)
     print("Returning home...")

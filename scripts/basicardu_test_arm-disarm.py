@@ -17,7 +17,8 @@ def main():
     """
 
     parser = ArgumentParser()
-    parser.add_argument('--connection_string', type=str, default='tcp:127.0.0.1:5762', help='Ardupilot connection string')
+    # parser.add_argument('--connection_string', type=str, default='tcp:127.0.0.1:5762', help='Ardupilot connection string')
+    parser.add_argument('--connection_string', type=str, default='tcp:192.168.10.110:5760', help='Ardupilot connection string')
     options = parser.parse_args()
 
     # Simple use example
@@ -29,11 +30,12 @@ def main():
 
     # Printing coordinates
     coords = drone.get_LLA()
-    print("Coordinates: " + coords)
+    print("Coordinates: ")
+    print(coords)
 
     # Disarming drone by landing
     drone.handle_landing()
-    sleep(10)
+    sleep(5)
 
 
 if __name__ == '__main__':

@@ -17,7 +17,8 @@ def main():
     """
 
     parser = ArgumentParser()
-    parser.add_argument('--connection_string', type=str, default='tcp:127.0.0.1:5762', help='Ardupilot connection string')
+    # parser.add_argument('--connection_string', type=str, default='tcp:127.0.0.1:5762', help='Ardupilot connection string')
+    parser.add_argument('--connection_string', type=str, default='tcp:192.168.10.110:5760', help='Ardupilot connection string')
     options = parser.parse_args()
 
     # Parameters
@@ -37,10 +38,11 @@ def main():
 
     # Go to 1st waypoint - 2m (2m north, 0 meters east, 5 meters up, facing North)
     print("Going to 1st waypoint...")
-    drone.handle_waypoint(Frames.NED, 2, 0, drone_height, 0)
+    drone.handle_waypoint(Frames.NED, 10, 0, drone_height, 0)
     print("Reached 1st waypoint.")
-    sleep(10)
+    sleep(5)
 
+    """
     # Go to 2nd waypoint - 4m (4m north, 0 meters east, 5 meters up, facing North)
     print("Going to 2nd waypoint...")
     drone.handle_waypoint(Frames.NED, 4, 0, drone_height, 0)
@@ -64,12 +66,14 @@ def main():
     drone.handle_waypoint(Frames.NED, 10, 0, drone_height, 0)
     print("Reached 5th waypoint.")
     sleep(10)
+    """
 
     # Return to Home (0m north, 0 meters east, 5 meters up, facing North)
     print("Returning home...")
     drone.handle_waypoint(Frames.NED, 0, 0, drone_height, 0)
     print("Reached home.")
     sleep(5)
+
 
     # Land
     drone.handle_landing()

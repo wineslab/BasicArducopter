@@ -69,7 +69,7 @@ user_altitude = 5   # meters
 arm(user_altitude)
 
 # sleep so we can see the change in map
-time.sleep(10)
+time.sleep(5)
 
 # vehicle.mode = VehicleMode("LAND")
 
