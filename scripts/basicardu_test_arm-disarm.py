@@ -9,6 +9,7 @@ Created by Davide Villa (villa.d@northeastern.edu)
 from argparse import ArgumentParser
 from time import sleep
 from BasicArdu.BasicArdu import BasicArdu
+import os
 
 
 def main():
@@ -26,12 +27,18 @@ def main():
 
     # Arming drone
     drone.handle_arm()
-    sleep(10)
+    sleep(5)
 
     # Printing coordinates
     coords = drone.get_LLA()
     print("Coordinates: ")
     print(coords)
+    log_file = 'coordinates.txt'
+    if os.path.isfile(log_file):
+        with open(log_file, 'a+') as file:
+            file.write('\n')
+    with open(log_file, 'a+') as file:
+        file.write(str(coords))
 
     # Disarming drone by landing
     drone.handle_landing()

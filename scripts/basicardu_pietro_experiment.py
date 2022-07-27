@@ -31,8 +31,8 @@ def main():
 
     # Takeoff
     drone.handle_takeoff(5)
-    print("Takeoff done! Sleep 5 secs...")
-    sleep(5)
+    print("Takeoff done! Sleep 10 mins...")
+    sleep(600)
 
     # Land
     drone.handle_landing()
