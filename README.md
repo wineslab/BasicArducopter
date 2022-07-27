@@ -222,3 +222,13 @@ This terminal is used for running the mission program
 
 
 ### Ubuntu 20.04 Setup (WIP)
+
+## Troubleshooting
+
+### MacOS simulator setup
+
+* For all installation and usage, be sure to use the x86 Terminal (with Rosetta for Mac M1).
+* Try to use older libraries if they are not found or give some errors: future==0.16.0 and monotonic==0.5 .
+* If mavproxy is not founded, uninstall it and follow this guide [here](https://ardupilot.org/mavproxy/docs/getting_started/download_and_installation.html#mac). Then, close all bash terminals (and Terminal application) and re-open them.
+* Be sure you are using the proper address for the simulated drone: `127.0.0.1:5762`.
+* No need to install ROS. It worked with: QGround Control, Gazebo and Ardupilot (with also Ardupilot_Gazebo).
